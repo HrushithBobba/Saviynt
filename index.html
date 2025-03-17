@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saviynt IGA L100 Practice Exam</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .quiz-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            background: #e7e7e7;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .options button:hover {
+            background: #dcdcdc;
+        }
+        .correct {
+            background: #4CAF50 !important;
+            color: white;
+        }
+        .incorrect {
+            background: #f44336 !important;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Saviynt IGA L100 Practice Exam</h1>
+        <div id="quiz"></div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "What is the primary function of an Identity Governance and Administration (IGA) solution?",
+                options: [
+                    "A) Manage user access and enforce security policies",
+                    "B) Store employee records",
+                    "C) Create new applications",
+                    "D) Encrypt sensitive data"
+                ],
+                correct: 0
+            },
+            {
+                question: "Which of the following is a key feature of Saviynt IGA?",
+                options: [
+                    "A) Database management",
+                    "B) Identity lifecycle management",
+                    "C) File storage solutions",
+                    "D) Network firewall configuration"
+                ],
+                correct: 1
+            },
+            {
+                question: "Which job must be run to provision approved access to a connected application?",
+                options: [
+                    "A) Reconciliation Job",
+                    "B) WSRETRY Job",
+                    "C) Data Cleanup Job",
+                    "D) Risk Evaluation Job"
+                ],
+                correct: 1
+            },
+            {
+                question: "What is the role of Saviynt APIs?",
+                options: [
+                    "A) To provide access to system logs",
+                    "B) To integrate with external identity and access management systems",
+                    "C) To encrypt user credentials",
+                    "D) To block phishing attempts"
+                ],
+                correct: 1
+            },
+            {
+                question: "What should an administrator do if a birthright access rule is not provisioning access correctly?",
+                options: [
+                    "A) Delete the user account and recreate it",
+                    "B) Check if the Technical Rule conditions are correctly configured",
+                    "C) Manually assign the access to all users",
+                    "D) Restart the Saviynt server"
+                ],
+                correct: 1
+            }
+        ];
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            quizContainer.innerHTML = "";
+
+            quizData.forEach((q, index) => {
+                let questionDiv = document.createElement("div");
+                questionDiv.classList.add("question");
+                questionDiv.innerText = `${index + 1}. ${q.question}`;
+                quizContainer.appendChild(questionDiv);
+
+                let optionsDiv = document.createElement("div");
+                optionsDiv.classList.add("options");
+
+                q.options.forEach((option, i) => {
+                    let button = document.createElement("button");
+                    button.innerText = option;
+                    button.onclick = () => checkAnswer(button, i === q.correct);
+                    optionsDiv.appendChild(button);
+                });
+
+                quizContainer.appendChild(optionsDiv);
+            });
+        }
+
+        function checkAnswer(button, isCorrect) {
+            if (isCorrect) {
+                button.classList.add("correct");
+                button.innerText += " ✅ Correct!";
+            } else {
+                button.classList.add("incorrect");
+                button.innerText += " ❌ Incorrect!";
+            }
+            button.disabled = true;
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
